@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace UrlShortenerApi.Repositories
+namespace UrlShortenerApi.Models
 {
     public class Url
     {

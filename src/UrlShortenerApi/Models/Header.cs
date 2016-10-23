@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UrlShortenerApi.Repositories
+namespace UrlShortenerApi.Models
 {
     public class Header
     {
