@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using UrlShortenerApi.Data;
 
 namespace UrlShortenerApi
 {
@@ -29,6 +31,10 @@ namespace UrlShortenerApi
         {
             // Add framework services.
             services.AddMvc();
+
+            // Add database context service
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
