@@ -30,6 +30,11 @@ namespace UrlShortenerApi.Repositories
             return _context.Urls.Single(m => m.ID == id);
         }
 
+        public Url Find(string shortFormat)
+        {
+            return _context.Urls.Single(m => m.ShortFormat == shortFormat);
+        }
+
         public void Remove(int id)
         {
             var student = _context.Urls.Single(m => m.ID == id);

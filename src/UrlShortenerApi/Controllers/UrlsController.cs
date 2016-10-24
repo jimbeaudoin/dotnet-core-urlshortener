@@ -26,11 +26,11 @@ namespace UrlShortenerApi.Controllers
             return Urls.GetAll();
         }
 
-        // GET api/urls/5
-        [HttpGet("{id}", Name = "GetUrl")]
-        public IActionResult GetById(int id)
+        // GET api/urls/dsf034
+        [HttpGet("{shortFormat}", Name = "GetUrlByShortFormat")]
+        public IActionResult GetByShortFormat(string shortFormat)
         {
-            var item = Urls.Find(id);
+            var item = Urls.Find(shortFormat);
             if (item == null)
             {
                 return NotFound();
@@ -47,7 +47,7 @@ namespace UrlShortenerApi.Controllers
                 return BadRequest();
             }
             Urls.Add(item);
-            return CreatedAtRoute("GetUrl", new { id = item.ID }, item);
+            return CreatedAtRoute("GetUrlByShortFormat", new { shortFormat = item.ShortFormat }, item);
         }
     }
 }
