@@ -14,9 +14,12 @@ namespace UrlShortenerApi.Controllers
     public class UrlsController : Controller
     {
         public IUrlRepository Urls { get; set; }
-        public UrlsController(IUrlRepository urls)
+        public IHeaderRepository Headers { get; set; }
+
+        public UrlsController(IUrlRepository urls, IHeaderRepository headers)
         {
             Urls = urls;
+            Headers = headers;
         }
 
         // GET: api/urls
@@ -40,14 +43,17 @@ namespace UrlShortenerApi.Controllers
 
         // POST api/urls
         [HttpPost]
-        public IActionResult Create([FromBody] Url item)
+        public IActionResult Create([FromBody] Url urlItem)
         {
-            if (item == null)
+            if (urlItem == null)
             {
                 return BadRequest();
             }
-            Urls.Add(item);
-            return CreatedAtRoute("GetUrlByShortFormat", new { shortFormat = item.ShortFormat }, item);
+
+            Urls.Add(urlItem);
+            Headers.Add(Request.Headers, urlItem.ID);
+
+            return CreatedAtRoute("GetUrlByShortFormat", new { shortFormat = urlItem.ShortFormat }, urlItem);
         }
     }
 }
