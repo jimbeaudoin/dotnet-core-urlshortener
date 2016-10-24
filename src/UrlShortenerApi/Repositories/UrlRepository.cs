@@ -15,6 +15,7 @@ namespace UrlShortenerApi.Repositories
 
         public void Add(Url item)
         {
+            item.ShortFormat = UrlShortenerLib.Shortener.GenerateShortFormat(6);
             _context.Urls.Add(item);
             _context.SaveChanges();
         }
