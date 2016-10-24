@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UrlShortenerApi.Data;
 using UrlShortenerApi.Models;
@@ -16,6 +17,7 @@ namespace UrlShortenerApi.Repositories
         public void Add(Url item)
         {
             item.ShortFormat = UrlShortenerLib.Shortener.GenerateShortFormat(6);
+            item.CreationDate = DateTime.Now;
             _context.Urls.Add(item);
             _context.SaveChanges();
         }
