@@ -29,12 +29,12 @@ namespace UrlShortenerApi.Repositories
 
         public Url Find(int id)
         {
-            return _context.Urls.Single(m => m.ID == id);
+            return _context.Urls.SingleOrDefault(m => m.ID == id);
         }
 
         public Url Find(string shortFormat)
         {
-            return _context.Urls.Single(m => m.ShortFormat == shortFormat);
+            return _context.Urls.SingleOrDefault(m => m.ShortFormat == shortFormat);
         }
 
         public void Remove(int id)
