@@ -1,6 +1,6 @@
 # .NET Core URL Shortener 
 
-This project uses `Code First Migrations`.
+This project uses `Code First Migrations` and is still a work in progress.
 
 You need to execute the command `Update-Database` before launching the API for the first time.
 
