@@ -13,45 +13,43 @@ namespace UrlShortenerApi.Migrations
                 name: "Urls",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     CreatedByIp = table.Column<string>(nullable: true),
                     CreationDate = table.Column<DateTime>(nullable: false),
-                    LongFormat = table.Column<string>(nullable: true),
+                    LongFormat = table.Column<string>(nullable: false),
                     ShortFormat = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Urls", x => x.ID);
+                    table.PrimaryKey("PK_Urls", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Headers",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CreationDate = table.Column<DateTime>(nullable: false),
-                    RequestCount = table.Column<int>(nullable: false),
                     RequestIp = table.Column<string>(nullable: true),
-                    UrlID = table.Column<int>(nullable: false),
+                    UrlId = table.Column<Guid>(nullable: false),
                     UserAgent = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Headers", x => x.ID);
+                    table.PrimaryKey("PK_Headers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Headers_Urls_UrlID",
-                        column: x => x.UrlID,
+                        name: "FK_Headers_Urls_UrlId",
+                        column: x => x.UrlId,
                         principalTable: "Urls",
-                        principalColumn: "ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Headers_UrlID",
+                name: "IX_Headers_UrlId",
                 table: "Headers",
-                column: "UrlID");
+                column: "UrlId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

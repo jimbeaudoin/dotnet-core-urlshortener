@@ -27,9 +27,9 @@ namespace UrlShortenerApi.Repositories
             return _context.Urls.ToList();
         }
 
-        public Url Find(int id)
+        public Url Find(System.Guid id)
         {
-            return _context.Urls.SingleOrDefault(m => m.ID == id);
+            return _context.Urls.SingleOrDefault(m => m.Id == id);
         }
 
         public Url Find(string shortFormat)
@@ -37,9 +37,9 @@ namespace UrlShortenerApi.Repositories
             return _context.Urls.SingleOrDefault(m => m.ShortFormat == shortFormat);
         }
 
-        public void Remove(int id)
+        public void Remove(System.Guid id)
         {
-            var student = _context.Urls.Single(m => m.ID == id);
+            var student = _context.Urls.Single(m => m.Id == id);
             if (student != null) 
             {
                 _context.Urls.Remove(student);

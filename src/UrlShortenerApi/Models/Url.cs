@@ -7,7 +7,7 @@ namespace UrlShortenerApi.Models
 {
     public class Url
     {
-        public int ID { get; set; }
+        public System.Guid Id { get; set; }
 
         [Required]
         public string LongFormat { get; set; }

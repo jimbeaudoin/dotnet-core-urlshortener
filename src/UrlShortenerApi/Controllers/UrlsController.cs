@@ -40,7 +40,7 @@ namespace UrlShortenerApi.Controllers
             }
 
             // Add a new header to Url
-            Headers.Add(Request.Headers, item.ID);
+            Headers.Add(Request.Headers, item.Id);
 
             return new ObjectResult(item);
         }
@@ -67,7 +67,7 @@ namespace UrlShortenerApi.Controllers
 
             // Save new items
             Urls.Add(urlItem);
-            Headers.Add(Request.Headers, urlItem.ID);
+            Headers.Add(Request.Headers, urlItem.Id);
 
             return CreatedAtRoute("GetUrlByShortFormat", new { shortFormat = urlItem.ShortFormat }, urlItem);
         }

@@ -15,7 +15,7 @@ namespace UrlShortenerApi.Repositories
             _context = context;
         }
 
-        public void Add(Microsoft.AspNetCore.Http.IHeaderDictionary headers, int urlId)
+        public void Add(Microsoft.AspNetCore.Http.IHeaderDictionary headers, System.Guid urlId)
         {
             Header headerItem = new Header();
             Microsoft.Extensions.Primitives.StringValues values;
@@ -28,7 +28,7 @@ namespace UrlShortenerApi.Repositories
             }
 
             headerItem.CreationDate = DateTime.Now;
-            headerItem.UrlID = urlId;
+            headerItem.UrlId = urlId;
             Add(headerItem);
         }
 

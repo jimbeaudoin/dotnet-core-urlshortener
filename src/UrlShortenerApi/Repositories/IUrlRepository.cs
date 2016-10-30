@@ -7,9 +7,9 @@ namespace UrlShortenerApi.Repositories
     {
         void Add(Url item);
         IEnumerable<Url> GetAll();
-        Url Find(int id);
+        Url Find(System.Guid id);
         Url Find(string shortFormat);
-        void Remove(int id);
+        void Remove(System.Guid id);
         void Update(Url item);
     }
 }

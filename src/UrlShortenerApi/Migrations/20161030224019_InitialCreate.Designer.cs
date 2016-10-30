@@ -8,8 +8,8 @@ using UrlShortenerApi.Data;
 namespace UrlShortenerApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20161030193437_RemoveRequestCountFromHeaders")]
-    partial class RemoveRequestCountFromHeaders
+    [Migration("20161030224019_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,27 +19,27 @@ namespace UrlShortenerApi.Migrations
 
             modelBuilder.Entity("UrlShortenerApi.Models.Header", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreationDate");
 
                     b.Property<string>("RequestIp");
 
-                    b.Property<int>("UrlID");
+                    b.Property<Guid>("UrlId");
 
                     b.Property<string>("UserAgent");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("UrlID");
+                    b.HasIndex("UrlId");
 
                     b.ToTable("Headers");
                 });
 
             modelBuilder.Entity("UrlShortenerApi.Models.Url", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("CreatedByIp");
@@ -51,7 +51,7 @@ namespace UrlShortenerApi.Migrations
 
                     b.Property<string>("ShortFormat");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Urls");
                 });
@@ -60,7 +60,7 @@ namespace UrlShortenerApi.Migrations
                 {
                     b.HasOne("UrlShortenerApi.Models.Url", "Url")
                         .WithMany("Headers")
-                        .HasForeignKey("UrlID")
+                        .HasForeignKey("UrlId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }
