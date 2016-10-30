@@ -43,13 +43,19 @@ namespace UrlShortenerApi.Controllers
 
         // POST api/urls
         [HttpPost]
-        public IActionResult Create([FromBody] Url urlItem)
+        public IActionResult Create([FromBody] Url urlPost)
         {
-            if (urlItem == null)
+            // Guard against null object
+            if (urlPost == null)
             {
                 return BadRequest();
             }
 
+            // Whitelist JSON params
+            Url urlItem = new Url();
+            urlItem.LongFormat = urlPost.LongFormat;
+
+            // Save new items
             Urls.Add(urlItem);
             Headers.Add(Request.Headers, urlItem.ID);
 
