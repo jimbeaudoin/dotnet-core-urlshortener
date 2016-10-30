@@ -59,6 +59,12 @@ namespace UrlShortenerApi.Controllers
             Url urlItem = new Url();
             urlItem.LongFormat = urlPost.LongFormat;
 
+            // Validate Model
+            if (!TryValidateModel(urlItem))
+            {
+                return BadRequest();
+            }
+
             // Save new items
             Urls.Add(urlItem);
             Headers.Add(Request.Headers, urlItem.ID);
