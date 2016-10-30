@@ -38,6 +38,10 @@ namespace UrlShortenerApi.Controllers
             {
                 return NotFound();
             }
+
+            // Add a new header to Url
+            Headers.Add(Request.Headers, item.ID);
+
             return new ObjectResult(item);
         }
 

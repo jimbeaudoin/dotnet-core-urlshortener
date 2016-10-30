@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace UrlShortenerApi.Models
 {
@@ -10,6 +11,8 @@ namespace UrlShortenerApi.Models
         public string ShortFormat { get; set; }
         public DateTime CreationDate { get; set; }
         public string CreatedByIp { get; set; }
+
+        [JsonIgnore]
         public ICollection<Header> Headers { get; set; }
     }
 }
