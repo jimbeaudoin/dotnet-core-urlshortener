@@ -8,9 +8,10 @@ using UrlShortenerApi.Data;
 namespace UrlShortenerApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20161030191316_AddRequiredToUrlLongFormat")]
+    partial class AddRequiredToUrlLongFormat
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
