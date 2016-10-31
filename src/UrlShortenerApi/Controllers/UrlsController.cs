@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using UrlShortenerApi.Repositories;
 using UrlShortenerApi.Models;
+using Microsoft.AspNetCore.Http.Features;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -64,6 +65,9 @@ namespace UrlShortenerApi.Controllers
             {
                 return BadRequest();
             }
+
+            urlItem.CreatedByIp = Request.HttpContext.Connection.RemoteIpAddress.ToString();
+            //var remoteIpAddress2 = HttpContext.Features.Get<IHttpConnectionFeature>()?.RemoteIpAddress;
 
             // Save new items
             Urls.Add(urlItem);
