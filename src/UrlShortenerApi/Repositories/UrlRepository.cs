@@ -16,7 +16,11 @@ namespace UrlShortenerApi.Repositories
 
         public void Add(Url item)
         {
-            item.ShortFormat = UrlShortenerLib.Shortener.GenerateShortFormat(6);
+            do
+            {
+                item.ShortFormat = UrlShortenerLib.Shortener.GenerateShortFormat(6);
+            } while (!ShortFormatIsUnique(item.ShortFormat));
+
             item.CreationDate = DateTime.Now;
             _context.Urls.Add(item);
             _context.SaveChanges();
@@ -35,6 +39,19 @@ namespace UrlShortenerApi.Repositories
         public Url Find(string shortFormat)
         {
             return _context.Urls.SingleOrDefault(m => m.ShortFormat == shortFormat);
+        }
+
+        private bool ShortFormatIsUnique(string shortFormat)
+        {
+            Url item = Find(shortFormat);
+            if (item != null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }
