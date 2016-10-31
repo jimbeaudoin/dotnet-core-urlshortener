@@ -37,6 +37,5 @@ namespace UrlShortenerApi.Repositories
             _context.Headers.Add(item);
             _context.SaveChanges();
         }
-
     }
 }

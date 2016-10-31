@@ -36,19 +36,5 @@ namespace UrlShortenerApi.Repositories
         {
             return _context.Urls.SingleOrDefault(m => m.ShortFormat == shortFormat);
         }
-
-        public void Remove(System.Guid id)
-        {
-            var student = _context.Urls.Single(m => m.Id == id);
-            if (student != null) 
-            {
-                _context.Urls.Remove(student);
-            } 
-        }
-
-        public void Update(Url item)
-        {
-            _context.Update(item);
-        }
     }
 }
