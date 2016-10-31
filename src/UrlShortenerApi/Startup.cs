@@ -49,6 +49,8 @@ namespace UrlShortenerApi
             loggerFactory.AddDebug();
 
             app.UseMvc();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
         }
     }
 }
