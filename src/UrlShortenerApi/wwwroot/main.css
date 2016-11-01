@@ -3,3 +3,11 @@
     margin: 0 auto;
     margin-top: 150px;
 }
+
+#input-container {
+    display: flex;
+}
+
+#txtUrl {
+    flex: 1 1 auto;
+}

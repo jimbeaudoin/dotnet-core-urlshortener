@@ -72,10 +72,15 @@ var Initializer = {
     initPage() {
         var param = Initializer.getParam("q");
         if (param === null) {
+            var inputContainer = document.createElement("div");
+            inputContainer.id = "input-container";
+
             inputElement = Renderer.createInputElement();
             btnElement = Renderer.createBtnElement();
-            contentContainer.insertBefore(btnElement, contentContainer.firstChild);
-            contentContainer.insertBefore(inputElement, contentContainer.firstChild);
+            
+            inputContainer.appendChild(inputElement);
+            inputContainer.appendChild(btnElement);
+            contentContainer.appendChild(inputContainer);
             statusContainer.innerHTML = "";
         }
         else {
