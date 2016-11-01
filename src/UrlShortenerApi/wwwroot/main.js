@@ -1,5 +1,8 @@
-﻿var contentContainer = document.getElementById("content-container");
+﻿var statusContainer = document.getElementById("status-container");
+var contentContainer = document.getElementById("content-container");
 var currentHref = `${window.location.protocol}//${window.location.host}/`;
+var btnElement;
+var inputElement;
 
 var Ajax = {
     call(method, url, data, cfunc) {
@@ -27,6 +30,7 @@ var Renderer = {
         // Add button click event listener
         element.addEventListener("click", function (e) {
             if (inputElement.value !== "") {
+                statusContainer.innerHTML = "Please wait... Work in Progress";
                 var data = JSON.stringify({
                     "longFormat": inputElement.value
                 });
@@ -35,6 +39,7 @@ var Renderer = {
                 Ajax.call("POST", `${currentHref}api/urls`, data, function (xhttpRequest) {
                     var urlItem = JSON.parse(xhttpRequest.response);
                     contentContainer.appendChild(Renderer.createUrlElement(urlItem));
+                    statusContainer.innerHTML = "";
                 });
             }
         });
@@ -67,11 +72,15 @@ var Initializer = {
     initPage() {
         var param = Initializer.getParam("q");
         if (param === null) {
+            inputElement = Renderer.createInputElement();
+            btnElement = Renderer.createBtnElement();
             contentContainer.insertBefore(btnElement, contentContainer.firstChild);
             contentContainer.insertBefore(inputElement, contentContainer.firstChild);
+            statusContainer.innerHTML = "";
         }
         else {
             // Ask API for long format and redirect
+            statusContainer.innerHTML = "Please wait... Redirection in progress"
             Ajax.call("GET", `${currentHref}api/urls/${param}`, null, function (xhttpRequest) {
                 var responseJSON = JSON.parse(xhttpRequest.response);
                 window.location.href = responseJSON.longFormat;
@@ -80,6 +89,4 @@ var Initializer = {
     }
 }
 
-var btnElement = Renderer.createBtnElement();
-var inputElement = Renderer.createInputElement();
 Initializer.initPage();
