@@ -14,11 +14,7 @@ This project is in alpha stage and can drastically change at anytime. The initia
   * [Url Shortener Lib](src/UrlShortenerLib)
   * [Url Shortener Web Client](src/UrlShortenerApi/wwwroot)
 
-### How to add URLs
+### How to run the project
 
-With Postman, `POST` the following raw data as `JSON (application/json)` to `api/urls`:
-```
-{
-	"longFormat": "https://google.com"	
-}
-```
+To run the project, clone this repo and open the solution in Visual Studio 2015. 
+You can then start the project and enter new URL using the web client and your browser.
